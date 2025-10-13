@@ -51,12 +51,13 @@ label[for="password"] {
 
 .LoginPage .UserLog .user_input_box,
 .LoginPage .UserLog .user_input_password {
-  width: 370px;
+  width: 95%;
   height:40px;
   font-size: 16px;
   border: 1.95px solid #ccc; 
   border-radius: 5px;
   margin-top:10px;
+  
 }
 
 input::placeholder {
@@ -73,6 +74,14 @@ input::placeholder {
   font-size:13.6px;
   border-radius:5px;
   border:2px ;
-  margin-bottom:35px;
 }
 
+#passwordlink {
+  display:flex;
+  text-decoration:none;
+  margin-top:10px;
+  margin-left:160px;
+  font-size:13px;
+  text-decoration:underline;
+  color:black;
+}
