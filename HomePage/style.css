@@ -1,6 +1,7 @@
 body {
   background:white;
   margin:0;
+  font-family:sans-serif;
 }
 
 .header {
@@ -55,10 +56,11 @@ body {
   display:flex;
   background:white;
   border-radius:8px;
-  width:14%;
+  width:18%;
   border:2px solid #E5E7EB;
   box-shadow:2px 2px 5px rgba(0,0,0,0.08);
   z-index:10px;
+  box-sizing:border-box;
 }
 
 #Home{
@@ -68,14 +70,12 @@ body {
   padding-left:30px;
   margin:0;
   padding-top:15px;
-  font-family:sans-serif;
 }
 
 .bris {
   text-align:center;
   font-size:40px;
-  font-family:sans-serif;
-  padding-top:3%;
+  padding-top:2%;
   margin-bottom:0;
   cursor:default;
   user-select:none;
@@ -84,9 +84,59 @@ body {
 .manage_residents {
   text-align:center;
   color:#4B5563;
-  font-family:sans-serif;
   margin-top:1%;
   cursor:default;
   user-select:none;
 }
 
+#records {
+  display:flex;
+  padding:60px 200px;
+  justify-content:space-around;
+  margin:0 ;
+  gap:10%;
+}
+
+#records1 {
+  display:flex;
+  padding:10px;
+  justify-content:centre;
+  padding-left:26%;
+  margin:0 ;
+  gap:11%;
+}
+
+.box {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  background:#F9FAFB;
+  border:1px solid #E5E7EB;
+  border-radius:10px;
+  width:300px;
+  height:180px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+#res1 {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+
+#icon {
+  z-index:19px;
+}
+
+.box img {
+  display:flex;
+  align-items:center;
+  background:#DBEAFE;
+  border-radius:40px;
+  padding:20px;
+  max-width:25px;
+  max-height:25px;
+  z-index:9px;
+}
