@@ -19,8 +19,8 @@ body {
 
 #header .residentp {
   margin:0;
-  padding-top:1%;
-  padding-bottom:1%;
+  padding-top:1.5%;
+  padding-bottom:%;
   color:#FFFFFF;
   margin-left:2%;
   font-size:27px;
@@ -29,8 +29,12 @@ body {
 #header .back {
   font-size:22px;
   color:white;
-  margin-left:16%;
+
   margin-top:22px;
+  margin-left: 58px;
+}
+#header .back:hover{
+cursor: pointer;
 }
 
 #searchbox {
@@ -69,5 +73,5 @@ body {
 .namelist {
   display:flex;
   list-style:none;
-  
+
 }
