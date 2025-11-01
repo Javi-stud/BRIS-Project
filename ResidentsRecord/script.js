@@ -1,3 +1,4 @@
+//here is where to put the json file about the residents record
 const residentsList = [
   {
   lastName:"Sing",
@@ -23,13 +24,19 @@ const residentsList = [
 },
   ];
 
-function renderResidents () {
-  const boxInfo = document.getElementsByClassName('residentsList')[0];  boxInfo.innerHTML='';
+function renderResidents (residentsData) {
+  const boxInfo = document.querySelector('.residentsList'); 
+  boxInfo.innerHTML='';
   
-  residentsList.forEach(resident => {
+  residentsData.forEach(resident => {
     
     const info = document.createElement('div');
     info.classList.add('residentsInfo');
+    
+    //Here we put where to see more about the residents info
+    info.addEventListener("click", () => {
+      window.location.href = `residentsInfo.html?id = ${resident.id}`;
+    });
     
     const name = document.createElement('div');
     name.classList.add('residentsName');
@@ -53,7 +60,33 @@ function renderResidents () {
   });
 }
 
-renderResidents();
+//displaying the residents info
+renderResidents(residentsList);
 
 
+
+//searching for a specific residents record
+const searchInput = document.querySelector('.search');
+const searchButton = document.querySelector('.serbot');
+
+searchInput.addEventListener('input', search);
+searchButton.addEventListener('click', search);
+
+function search () {
+  const showResidents = searchInput.value.trim().toLowerCase();
+  
+  if(showResidents === "") {
+    renderResidents(residentsList);
+    return;
+  }
+  
+  fetch(`/find?showResidents=${showResidents}`)
+  .then(response => response.json())
+  .then(data => {
+    renderResidents(data);
+  })
+  .catch(error => console.error("Error", error));
+  
+  
+}
                         
