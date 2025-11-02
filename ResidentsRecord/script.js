@@ -72,7 +72,7 @@ const searchButton = document.querySelector('.serbot');
 searchInput.addEventListener('input', search);
 searchButton.addEventListener('click', search);
 
-function search () {
+async function search () {
   const showResidents = searchInput.value.trim().toLowerCase();
   
   if(showResidents === "") {
@@ -80,12 +80,14 @@ function search () {
     return;
   }
   
-  fetch(`/find?showResidents=${showResidents}`)
-  .then(response => response.json())
-  .then(data => {
+  try {
+    const url = showResidents ? `/find?showResidents = ${encodeURIComponent(showResidents)}` : '/find';
+    const response = await fetch(url);
+    const data = await response.json();
     renderResidents(data);
-  })
-  .catch(error => console.error("Error", error));
+  } catch (error) {
+    console.error("ERROR : ", error);
+  }
   
   
 }
