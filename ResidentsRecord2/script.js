@@ -25,7 +25,7 @@ const residentDataInfo = [
   },
 ];
 
-/*
+
 const pageQueryString = window.location.search;
 const parsedQuery = new URLSearchParams(pageQueryString);
 const urlQuery = parsedQuery.get('id');
@@ -48,14 +48,14 @@ async function getResidentInfo(residentId) {
     if(document.referrer) {
       history.back();  
     } else {
-       window.location.href = "index.html";
+       window.location.href = "goesbacktothepreviusepage.html";
     }
   }
 }
 
 getResidentInfo(residentId);
 
-*/
+
 
 
 function displayResidentHeaderInfo (resident) {
@@ -88,9 +88,12 @@ displayResidentHeaderInfo(residentDataInfo[0]);
 
 
 
+//goes to the editing page
+const idSender = document.getElementById('residentEditPage');
 
-
-
+idSender.addEventListener('click', () =>{
+  window.location.href=`editpahesomething.html?id=${residentId}`;
+})
 
 
 
