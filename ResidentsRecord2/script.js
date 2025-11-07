@@ -3,7 +3,9 @@ const residentDataInfo = [
   {
     firstName: "sing",
     lastName: "vi",
+    sex:"Male",
     age:"15",
+    city:"manilam",
     sitio:"bohol",
     occupation:"rider",
     voterStatus:"Registered",
@@ -17,11 +19,13 @@ const residentDataInfo = [
     religion:"catholic",
     PWD:"Idunno",
     suffix:"N\A",
+    senior:"nope",
+    condition:"buhi pa po",
     picture: "https://cdn-icons-png.flaticon.com/128/346/346167.png",
   },
 ];
 
-
+/*
 const pageQueryString = window.location.search;
 const parsedQuery = new URLSearchParams(pageQueryString);
 const urlQuery = parsedQuery.get('id');
@@ -51,7 +55,7 @@ async function getResidentInfo(residentId) {
 
 getResidentInfo(residentId);
 
-
+*/
 
 
 function displayResidentHeaderInfo (resident) {
@@ -68,132 +72,58 @@ function displayResidentHeaderInfo (resident) {
   name.textContent = `${resident.firstName} ${resident.lastName}`;
   
   
-  const address_age = document.createElement('div');
-  address_age.classList.add('residentAddressAge');
-  address_age.textContent = `${resident.sitio} ${resident.age}`;
+  const age = document.createElement('div');
+  age.classList.add('residentAge');
+  age.textContent = `${resident.age}yo`;
+  
+  const address = document.createElement('div');
+  address.classList.add('residentAddress');
+  address.textContent = resident.city;
   
   
-  const occupation = document.createElement('div');
-  occupation.classList.add('residentOccupation');
-  occupation.textContent = `${resident.occupation}`;
-  
-  
- residentsHeader.append(name, address_age, occupation)
+ residentsHeader.append(name, age, address)
 }
 
 displayResidentHeaderInfo(residentDataInfo[0]);
 
 
+
+
+
+
+
+
+
+
+
+
 function displayResidentLowerInfo(resident) {
   
-  const residentSitio = document.getElementById('residentSitio')
-  residentSitio.innerHTML = '';
+  const residentsInfo = {
+    residentSex: resident.sex,
+    residentOccupation: resident.occupation,
+    residentSitio: resident.sitio,
+    residentVoterStatus: resident.voterStatus,
+    residentBirthDate: resident.birthDate,
+    residentCivilStatus: resident.civilStatus,
+    residentHouseholdMembers: resident.householdMembers,
+    residentContact: resident.contact,
+    residentBloodType: resident.bloodType,
+    residentEmail: resident.email,
+    residentEducationalAttainment: resident.educationalAttainment,
+    residentReligion: resident.religion,
+    residentPWD: resident.PWD,
+    residentSuffix: resident.suffix,
+    residentSenior: resident.senior,
+    residentCondition: resident.condition,
+  };
   
-  const sitio = document.createElement('div');
-  sitio.textContent =`${resident.sitio}`;
-  
-  residentSitio.appendChild(sitio);
-  
-  
-  const residentVoterStatus = document.getElementById('residentVoterStatus');
-  residentVoterStatus.innerHTML ='';
-  
-  const voterStatus = document.createElement('div');
-  voterStatus.textContent = `${resident.voterStatus}`;
-  
-  residentVoterStatus.appendChild(voterStatus);
-  
-  
-  const residentBirthDate = document.getElementById('residentBirthDate');
-  residentBirthDate.innerHTML ='';
-  
-  const birthDate = document.createElement('div');
-  birthDate.textContent = `${resident.birthDate}`;
-  
-  residentBirthDate.appendChild(birthDate);
-  
-  
-  const residentCivilStatus = document.getElementById('residentCivilStatus');
-  residentCivilStatus.innerHTML ='';
-  
-  const civilStatus = document.createElement('div');
-  civilStatus.textContent = `${resident.civilStatus}`;
-  
-  residentCivilStatus.appendChild(civilStatus);
-  
-  
-  const residentHouseholdMembers = document.getElementById('residentHouseholdMembers');
-  residentHouseholdMembers.innerHTML='';
-  
-  const householdMembers = document.createElement('div');
-  householdMembers.textContent = `${resident.householdMembers}`;
-  
-  residentHouseholdMembers.appendChild(householdMembers);
-  
-  
-  const residentContact = document.getElementById('residentContact');
-  residentContact.innerHTML ='';
-  
-  const contact = document.createElement('div');
-  contact.textContent = `${resident.contact}`;
-  
-  residentContact.appendChild(contact);
-  
-  
-  const residentBloodType = document.getElementById('residentBloodType');
-  residentBloodType.innerHTML ='';
-  
-  const bloodType = document.createElement('div');
-  bloodType.textContent = `${resident.bloodType}`;
-  
-  residentBloodType.appendChild(bloodType);
-  
-  
-  const residentEmail = document.getElementById('residentEmail');
-  residentEmail.innerHTML ='';
-  
-  const email = document.createElement('div');
-  email.textContent = `${resident.email}`;
-  
-  residentEmail.appendChild(email);
-  
-  
-  const residentEducationalAttainment = document.getElementById('residentEducationalAttainment');
-  residentEducationalAttainment.innerHTML ='';
-  
-  const educationalAttainment = document.createElement('div');
-  educationalAttainment.textContent = `${resident.educationalAttainment}`;
-  
-  residentEducationalAttainment.appendChild(educationalAttainment);
-  
-  
-  const residentReligion = document.getElementById('residentReligion');
-  residentReligion.innerHTML ='';
-  
-  const religion = document.createElement('div');
-  religion.textContent = `${resident.religion}`;
-  
-  residentReligion.appendChild(religion);
-  
-  
-  const residentPWD = document.getElementById('residentPWD');
-  residentPWD.innerHTML ='';
-  
-  const PWD = document.createElement('div');
-  PWD.textContent = `${resident.PWD}`;
-  
-  residentPWD.appendChild(PWD);
-  
-  
-  const residentSuffix = document.getElementById('residentSuffix');
-  residentSuffix.innerHTML ='';
-  
-  const suffix = document.createElement('div');
-  suffix.textContent = `${resident.suffix}`;
-  
-  residentSuffix.appendChild(suffix);
-  
-  
+  Object.entries(residentsInfo).forEach(([id, text]) => {
+    const infoContainer = document.getElementById(id);
+    if(infoContainer){
+      infoContainer.innerHTML = text;
+    }
+})
 }
 
 displayResidentLowerInfo(residentDataInfo[0]);
