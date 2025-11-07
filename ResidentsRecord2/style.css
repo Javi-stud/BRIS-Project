@@ -81,12 +81,9 @@ body {
 
 
 .editButton {
-  padding:2%;
+  padding-right:2%;
   color:#2563EB;
-}
-
-.editButton a {
-  text-decoration:none;
+  cursor:pointer;
 }
 
 #infoLower {
