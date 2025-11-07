@@ -76,12 +76,10 @@ function displayResidentHeaderInfo (resident) {
   age.classList.add('residentAge');
   age.textContent = `${resident.age}yo`;
   
-  const address = document.createElement('div');
-  address.classList.add('residentAddress');
-  address.textContent = resident.city;
+
   
   
- residentsHeader.append(name, age, address)
+ residentsHeader.append(name, age)
 }
 
 displayResidentHeaderInfo(residentDataInfo[0]);
