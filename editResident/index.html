@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Resident</title>
+    <link rel="stylesheet" th:href="@{/Css/newresident.css}">
+</head>
+<body>
+
+<div id="header">
+    <p class="residentp"> <b>Edit Resident</b></p>
+    <p class="back" onclick="window.location.href='/homepage'">Back</p>
+</div>
+
+<form th:action="@{/residents/save}" method="post" enctype="multipart/form-data" th:object="${resident}">
+    <h2>Edit Resident</h2>
+    <h4>Profile Picture</h4>
+
+    <div class="profile-upload">
+        <div class="profile-picture" id="photoPreview">
+            <span th:if="${resident.photoFile == null}">No Image</span>
+            <img th:if="${resident.photoFile != null}" th:src="@{${resident.photoFile}}" alt="Profile Preview"
+                 style="width:100px;height:100px;object-fit:cover;border-radius:5px;">
+        </div>
+        <label for="fileUpload" class="file-label">Choose File</label>
+        <input type="file" id="fileUpload" class="file-input" th:field="*{photoFile}" accept="image/*">
+    </div>
+
+    <br>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="input_lastname">Last Name</label>
+            <input type="text" id="input_lastname" th:field="*{lastname}" required placeholder="Input Last Name">
+        </div>
+
+        <div class="form-group">
+            <label for="input_firstname">First Name</label>
+            <input type="text" id="input_firstname" th:field="*{firstname}" required placeholder="Input First Name">
+        </div>
+
+        <div class="form-group">
+            <label for="input_middlename">Middle Name</label>
+            <input type="text" id="input_middlename" th:field="*{middlename}" placeholder="Optional">
+        </div>
+
+        <div class="form-group">
+            <label for="select_suffix">Suffix</label>
+            <select id="select_suffix" th:field="*{suffix}" required>
+                <option value="">Select</option>
+                <option value="Jr.">Jr.</option>
+                <option value="Sr.">Sr.</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="input-age">Age</label>
+            <input type="number" id="input-age" th:field="*{age}" readonly placeholder="Set the Birthdate">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="select_sex">Sex</label>
+            <select id="select_sex" th:field="*{sex}" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="input_birthdate">Birthdate</label>
+            <input type="date" id="input_birthdate" th:field="*{birthdate}" required>
+        </div>
+
+        <input type="hidden" id="seniorStatus" th:field="*{senior}">
+    </div>
+
+    <br>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="input_status">Civil Status</label>
+            <select id="input_status" th:field="*{civilstatus}" required>
+                <option value="">Select</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Widow">Widow</option>
+                <option value="Separated">Separated</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="input_Sitio">Sitio</label>
+            <input type="text" id="input_Sitio" th:field="*{sitio}" required placeholder="Enter Sitio you live">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="input_occupation">Occupation</label>
+            <input type="text" id="input_occupation" th:field="*{occupation}" required placeholder="Input Occupation">
+        </div>
+
+        <div class="form-group">
+            <label for="input_contactnumber">Contact Number</label>
+            <input type="tel" id="input_contactnumber" th:field="*{contactnumber}" minlength="11" maxlength="11" required placeholder="09XXXXXXXXX">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="select_voterstatus">Voter Status</label>
+            <select id="select_voterstatus" th:field="*{voterstatus}" required>
+                <option value="">Select</option>
+                <option value="Registered">Registered</option>
+                <option value="Not Registered">Not Registered</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="input_email">Email Address</label>
+            <input type="email" id="input_email" th:field="*{email}" placeholder="username@gmail.com (Optional)">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="input_numberofhousehold">Number of Household Members</label>
+            <input type="text" id="input_numberofhousehold" th:field="*{household}" required placeholder="Number of People in your Home">
+        </div>
+
+        <div class="form-group">
+            <label for="select_religion">Religion</label>
+            <select id="select_religion" th:field="*{religion}" required>
+                <option value="">Select</option>
+                <option value="Roman Catholic">Roman Catholic</option>
+                <option value="Islam">Islam</option>
+                <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
+                <option value="Born Again">Born Again</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-row">
+        <div class="form-group checkbox-group">
+            <label>
+                PWD
+                <input type="checkbox" th:field="*{pwd}">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="select_bloodtype">Blood Type</label>
+            <select id="select_bloodtype" th:field="*{bloodtype}" required>
+                <option value="">Select</option>
+                <option value="A">A</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B">B</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB">AB</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O">O</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="select_educationalattainment">Educational Attainment</label>
+            <select id="select_educationalattainment" th:field="*{education}" required>
+                <option value="">Select</option>
+                <option value="Elementary Level">Elementary Level</option>
+                <option value="Elementary Graduate">Elementary Graduate</option>
+                <option value="High School Level">High School Level</option>
+                <option value="High School Graduate">High School Graduate</option>
+                <option value="Senior High School Level">Senior High School Level</option>
+                <option value="Senior High School Graduate">Senior High School Graduate</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="select_condition">Condition</label>
+            <select id="select_condition" th:field="*{condition}" required>
+                <option value="Alive">Alive</option>
+                <option value="Deceased">Deceased</option>
+            </select>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="buttons">
+        <button class="cancel" type="button">Cancel</button>
+        <button class="save" type="submit">Save</button>
+    </div>
+</form>
+
+<div id="Footer"></div>
+<script th:src="@{Js/newresident.js}"></script>
+</body>
+</html>
