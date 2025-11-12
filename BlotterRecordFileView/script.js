@@ -45,7 +45,7 @@ function renderInfo () {
     respondent: "siya sad",
     typeOfCompliant: "wala lang",
     officerInCharge: "ambut",
-    status: "Pending",
+    status: "Settled",
     caseDescription: "wewasdafsfssssssss ssssssssssssss sssssssssssss sssssssssssssss sssssssssssssss ssssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssssssss sad asd a  ssssssssssssss sssssssssssss sssssssssssssss sssssssssssssss ssssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssssssss ssssssssssssss sssssssssssss sssssssssssssss sssssssssssssss ssssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssss sssssssssssssssssss ",
     complianantAge: "14",
     complianantContact: "globe",
@@ -68,10 +68,11 @@ function renderInfo () {
   const statusId = document.getElementById('status');
   const statusValue = info.status.toLowerCase();
   
-  statusId.classList.remove("pending", "settled");
+  statusId.classList.remove("pending", "settled", "ongoing");
   
   if(statusValue === "pending")  statusId.classList.add("pending");
   if(statusValue === "settled")   statusId.classList.add("settled");
+  if(statusValue === "ongoing") statusId.classList.add("ongoing");
   
   
   const viewMore = document.getElementById('viewMore');
