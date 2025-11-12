@@ -71,16 +71,24 @@ body {
 }
 
 #status {
-  padding:2% 5.5%;
+  padding:1% 3%;
   border-radius:15px;
 }
 
 #status.pending {
-  background:#FFE7B3;
+  background:#ED2939;
+  color:white;
 }
 
 #status.settled {
-  background:#3CB371;
+  background:#1DB954;
+  color:white;
+}
+
+#status.ongoing {
+  background:#FF7D29;
+  color:white;
+ 
 }
 
 .space {
