@@ -1,94 +1,73 @@
-//here is where to put the json file about the residents record
-const residentsList = [
-  {
-  lastName:"Sing",
-  firstName:"Javi",
-  address:"Ginatilan",
-  id:112312,
-  age:16,
-},
-{
-  lastName:"ding",
-  firstName:"risl",
-  address:"argao",
-  id:"2",
-  age:17,
-},
-{
-  lastName:"pimentl",
-  firstName:"jaym",
-  address:"mal",
-  id:"3",
+let residentsList = [];
 
-  
-},
-  ];
+async function loadResidents() {
+  try {
+    const response = await fetch("/api/residents");
+    residentsList = await response.json();
+    renderResidents(residentsList);
+  } catch (error) {
+    console.error("Error fetching residents:", error);
+  }
+}
 
-function renderResidents (residentsData) {
-  const boxInfo = document.querySelector('.residentsList'); 
-  boxInfo.innerHTML='';
-  
+const placeholder = [
+  {firstName:"Javi", lastName:"sing", sitio:"mangaco", age: "12", id:"1234556"},
+  {firstName:"clyde", lastName:"limba", sitio:"somewherefar", age: "14", id:"17654"},
+];
+
+renderResidents(placeholder);
+
+function renderResidents(residentsData) {
+  const boxInfo = document.querySelector('.residentsList');
+  boxInfo.innerHTML = '';
+
+  if (!residentsData || residentsData.length === 0) {
+    boxInfo.innerHTML = '<p style="text-align:center;">No residents found.</p>';
+    return;
+  }
+
   residentsData.forEach(resident => {
-    
-    const info = document.createElement('div');
-    info.classList.add('residentsInfo');
-    
-    //Here we put where to see more about the residents info
-    info.addEventListener("click", () => {
-      window.location.href = `residentsInfo.html?id = ${resident.id}`;
+    const card = document.createElement('div');
+    card.classList.add('residentsInfo');
+
+    card.innerHTML = `
+      <div class="col-name">${resident.firstName} ${resident.lastName}</div>
+      <div class="col-sitio">${resident.sitio}</div>
+      <div class="col-age">${resident.age}</div>
+      <div class="col-id">${resident.id}</div>
+    `;
+
+    card.addEventListener("click", () => {
+      window.location.href = `/residentsinfo?id=${resident.id}`;
     });
-    
-    const name = document.createElement('div');
-    name.classList.add('residentsName');
-    name.textContent = ` ${resident.firstName} ${resident.lastName} `;
-    
-    const address= document.createElement('div');
-    address.classList.add('residentsAddress');
-    address.textContent = `address: ${resident.address} - age: ${resident.age}`;
-    
-    const id = document.createElement('div');
-    id.classList.add('residentsId');
-    id.textContent =`${resident.id}`;
-    
-    const infoLeft = document.createElement('div');
-    infoLeft.append(name, address);
-    
-    info.append(infoLeft, id);
-    
-    boxInfo.append(info);
-    
+
+    boxInfo.append(card);
   });
 }
 
-//displaying the residents info
-renderResidents(residentsList);
+function searchResidents() {
+  const query = document.querySelector('.search').value.trim().toLowerCase();
 
-
-
-//searching for a specific residents record
-const searchInput = document.querySelector('.search');
-const searchButton = document.querySelector('.serbot');
-
-searchInput.addEventListener('input', search);
-searchButton.addEventListener('click', search);
-
-async function search () {
-  const showResidents = searchInput.value.trim().toLowerCase();
-  
-  if(showResidents === "") {
+  if (query === "") {
     renderResidents(residentsList);
     return;
   }
-  
-  try {
-    const url = showResidents ? `/find?showResidents = ${encodeURIComponent(showResidents)}` : '/find';
-    const response = await fetch(url);
-    const data = await response.json();
-    renderResidents(data);
-  } catch (error) {
-    console.error("ERROR : ", error);
-  }
-  
-  
+
+  const filtered = residentsList.filter(resident =>
+    `${resident.firstName} ${resident.lastName} ${resident.sitio} ${resident.age}`
+      .toLowerCase()
+      .includes(query)
+  );
+
+  renderResidents(filtered);
 }
-                        
+
+window.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.querySelector('.search');
+  const searchButton = document.querySelector('.serbot');
+
+  searchInput.addEventListener('input', searchResidents);
+  searchButton.addEventListener('click', searchResidents);
+
+  loadResidents();
+});
