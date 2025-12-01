@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Certificate Generator</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="app">
+
+  <!-- LEFT CONTROL PANEL -->
+  <div class="panel">
+    <h1>Certificate Builder</h1>
+
+    <label>Select Certificate Type</label>
+    <select id="certTypeSelect">
+      <option value="Indigency">Certificate of Indigency</option>
+      <option value="Residency">Certificate of Residency</option>
+      <option value="Barangay Clearance">Barangay Clearance</option>
+      <option value="Business Clearance">Business Clearance</option>
+    </select>
+
+    <label>Full Name</label>
+    <input id="citizenName" type="text" placeholder="Juan Dela Cruz">
+
+    <label>Address</label>
+    <input id="citizenAddress" type="text" placeholder="123 Sample St">
+
+    <label>Age</label>
+    <input id="age" type="number" placeholder="45">
+
+    <label>Purpose</label>
+    <input id="purpose" type="text" placeholder="Scholarship">
+
+    <label>Issue Date</label>
+    <input id="issuedDate" type="date" value="">
+
+    <label>Officer Name</label>
+    <input id="officerNameInput" type="text" placeholder="Punong Barangay">
+
+    <label>Officer Title</label>
+    <input id="officerTitleInput" type="text" placeholder="Barangay Captain">
+
+    <div class="upload-block">
+      <label>Photo</label>
+      <input id="photoFile" type="file" accept="image/*">
+    </div>
+    
+    <div class="upload-block">
+      <label>Signature</label>
+      <input id="sigFile" type="file" accept="image/*">
+    </div>
+
+    <button id="printBtn">Print Certificate</button>
+    <button id="savePdfBtn">Save as PDF</button>
+  </div>
+
+  <!-- RIGHT CERTIFICATE PREVIEW -->
+  <div class="certificate" id="certificate">
+    <div id="headerf">
+      <p>Republic Of The Philippines</p>
+      <p>Province of <span id="Province"></span></p>
+      <p>Municipality of <span id="municipality"></span></p>
+      <p>Barangay <span id="barangay"></span></p>
+      <p id="OOTPB">Office Of The Punong Barangay</p>
+    </div>
+
+    <div class="certContent">
+      <h2>CERTIFICATE OF INDIGENCY</h2>
+      <p id="concern">TO WHOM IT MAY CONCERN:</p>
+      <p id="certBody">Fill in the details to see the certificate here.</p>
+      <p>Issued on: <span id="issueDate"></span></p>
+      <p>Officer: <span id="officerName"></span> (<span id="officerTitle"></span>)</p>
+      <p>Purpose: <span id="purposeText"></span></p>
+    </div>
+
+    <div class="photo" id="photoPreview">Photo</div>
+    <div class="signature" id="sigPreview">Signature</div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script src="cert.js"></script>
+</body>
+</html>
