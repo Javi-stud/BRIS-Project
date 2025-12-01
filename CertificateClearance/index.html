@@ -6,7 +6,7 @@
   <title>Certificate Generator</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cert.css">
 </head>
 
 <body>
@@ -15,15 +15,18 @@
   <!-- LEFT CONTROL PANEL -->
   <div class="panel">
     <h1>Certificate Builder</h1>
+    
+        <!-- New fields for header -->
+    <label>Province</label>
+    <input id="provinceInput" type="text" placeholder="e.g., Cebu">
 
-    <label>Select Certificate Type</label>
-    <select id="certTypeSelect">
-      <option value="Indigency">Certificate of Indigency</option>
-      <option value="Residency">Certificate of Residency</option>
-      <option value="Barangay Clearance">Barangay Clearance</option>
-      <option value="Business Clearance">Business Clearance</option>
-    </select>
+    <label>Municipality</label>
+    <input id="municipalityInput" type="text" placeholder="e.g., Cebu City">
 
+    <label>Barangay</label>
+    <input id="barangayInput" type="text" placeholder="e.g., Barangay Pardo">
+
+    
     <label>Full Name</label>
     <input id="citizenName" type="text" placeholder="Juan Dela Cruz">
 
