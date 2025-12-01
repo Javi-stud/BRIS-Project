@@ -19,7 +19,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* LEFT PANEL */
 .panel {
   flex: 1 1 300px;
   max-width: 350px;
@@ -42,9 +41,8 @@ body {
   color: var(--muted);
 }
 
-.panel input, 
-.panel select {
-  width: 95%;
+.panel input, .panel select {
+  width: 100%;
   padding: 8px;
   margin: 5px 0 15px 0;
   border: 1px solid #ccc;
@@ -52,18 +50,10 @@ body {
   font-size: 14px;
 }
 
-/* Dropdown for certificate type */
-select#certTypeSelect {
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Upload blocks */
 .upload-block {
   margin-bottom: 15px;
 }
 
-/* RIGHT CERTIFICATE PREVIEW */
 .certificate {
   flex: 2 1 600px;
   background: var(--card);
@@ -86,7 +76,7 @@ select#certTypeSelect {
   line-height: 1.2;      
 }
 
-#OOTPB{
+#OOTPB {
   padding-top:4%; 
   font-size:20px;
   font-weight:bold;
@@ -103,11 +93,11 @@ select#certTypeSelect {
 }
 
 .certContent {
-  padding: 100px 30px 160px 30px;
+  padding: 90px 30px 160px 30px;
 }
 
 #concern {
-  font-size: 19px;
+  font-size:19px;
 }
 
 .photo, .signature {
@@ -120,17 +110,16 @@ select#certTypeSelect {
   text-align: center;
   line-height: 120px;
   position: absolute;
-  margin: 0;
 }
 
 .photo {
-  top: 30px;
-  right: 30px;
+  top: 30px; 
+  right: 30px; 
 }
 
-.signature {
-  bottom: 30px;
-  left: 30px;
+.signature { 
+  bottom: 30px; 
+  left: 30px; 
 }
 
 .photo img, .signature img {
@@ -143,7 +132,15 @@ select#certTypeSelect {
   font-weight: 600;
 }
 
-/* Buttons */
+@media (max-width: 900px) {
+  .app { 
+    flex-direction: column;
+  }
+  .panel, .certificate { 
+    max-width: 100%; 
+  }
+}
+
 button {
   width: 100%;
   padding: 10px;
@@ -157,17 +154,6 @@ button {
   font-size: 14px;
 }
 
-button:hover {
+button:hover { 
   background: #1e4e8c;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .app {
-    flex-direction: column;
-  }
-
-  .panel, .certificate {
-    max-width: 100%;
-  }
 }
