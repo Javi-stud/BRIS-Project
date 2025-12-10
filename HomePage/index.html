@@ -9,11 +9,13 @@
 
     <title>Home Page</title>
     <link rel="stylesheet" th:href="@{/Css/homepage.css}">
-    <link rel = "icon" th:href="@{/Images/Logo.png}">
+    <link rel="icon" th:href="@{/Images/Logo.png}">
 
-
+    <!-- ADD CHART.JS HERE -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
+
 <div id="logoutconfirm" class="confirm">
     <div class="confirmation">
         <p>Are you sure you want to <b>Log Out</b>?</p>
@@ -21,12 +23,11 @@
             <button id="cancel">Cancel</button>
             <button id="logout">Log Out</button>
         </div>
-
     </div>
-
 </div>
 
 <body>
+
 <div class="header">
     <nav>
         <ul>
@@ -41,40 +42,28 @@
 <div>
     <nav id="Inner_Dropdown">
         <ul id="menu_dropdown" style="display:none;">
-
             <li onclick="window.location.href='/userguide'"> <img th:src="@{/Images/User_Guide.png}" alt="userguide logo">User Guide</li>
-
             <li onclick="window.location.href='/history'"> <img th:src="@{/Images/History.png}" alt="history Logo">History</li>
             <li id="logoutbutton"> <img th:src="@{/Images/Log_Out.png}" alt="Logout_logo">Logout</li>
-
         </ul>
     </nav>
 </div>
 
 <div>
-    <p class="bris"><b>
-        Barangay Residents Information <br> System
-    </b></p>
-    <p class="manage_residents">
-        Barangay Service and Records
-    </p>
+    <p class="bris"><b>Barangay Residents Information <br> System</b></p>
+    <p class="manage_residents">Barangay Service and Records</p>
 </div>
 
 <div id="records">
     <a href="/newresident" class="box">
-
         <div id="icon1">
-            <img th:src="@{/Images/New_Resident.png}" alt="add_resident" >
+            <img th:src="@{/Images/New_Resident.png}" alt="add_resident">
         </div>
-
 
         <div id="res1">
             <p style="color:#1F2937;"><b>New Resident</b></p>
             <p style="color:#4B5563;">Register a resident</p>
         </div>
-
-
-
     </a>
 
     <a id="currentResidents" href="/residentsrecords" class="box">
@@ -87,49 +76,41 @@
             <p style="color:#4B5563;">Residents Information</p>
         </div>
       
-<div id="sitioList">
-        <p><b>Top Sitios</b></p>
-        <ul>
-          <li> <span>2000000000</span> - Sitio Unasdadfafafasfafasdsadaasdasdadaasdasdasdadadadsadafaf</li>
-            <li><span>20000000</span> - Sitio Dos – 98</li>
-            <li><span>200</span> - Sitio Tres – 80</li>
-        </ul>
-      </div>
+    <div id="sitioChartContainer" class="fade"style="display:none; width:100%; height:180px;">
+        <canvas id="sitioChart"></canvas>
+    </div>
 
+    <!-- Sitio data -->
+    <div id="sitioData" style="display:none;">
+        <span class="sitio" data-name="Sitio Uno" data-count="1000"></span>
+        <span class="sitio" data-name="Sitio Dos" data-count="500"></span>
+        <span class="sitio" data-name="Sitio Tres" data-count="200"></span>
+    </div>
+      
+    </a>
 
-  </a>
-
-  
-
-    <a id ="residentsBlotterRecords" href="/blotterrecords" class="box">
+    <a id="residentsBlotterRecords" href="/blotterrecords" class="box">
         <div id="icon3">
-            <img th:src="@{/Images/Blotter_Records.png}" alt="Blotter_Records" >
+            <img th:src="@{/Images/Blotter_Records.png}" alt="Blotter_Records">
         </div>
 
-
-        <div  class="residentsBlotterRecords">
+        <div class="residentsBlotterRecords">
             <img th:src="@{/Images/Blotter_Count.png}" alt="residentsBlotterRecords" height="30px" width="30px">
-            <span id="blotterRecords"> </span>
+            <span id="blotterRecords"></span>
         </div>
 
         <div id="res3">
             <p style="color:#1F2937;"><b>Blotter Records</b></p>
             <p style="color:#4B5563;">Records of Cases</p>
         </div>
-
     </a>
-
-
 </div>
 
 <div id="records1">
-
-
     <a href="/reportcase" class="box">
         <div id="icon4">
-            <img th:src="@{/Images/Report_Case.png}" alt="Case report" >
+            <img th:src="@{/Images/Report_Case.png}" alt="Case report">
         </div>
-
         <div id="res4">
             <p style="color:#1F2937;"><b>Report Case</b></p>
             <p style="color:#4B5563;">File a New Report</p>
@@ -138,22 +119,17 @@
 
     <a href="/certificates" class="box">
         <div id="icon5">
-            <img th:src="@{/Images/Certificates.png}" alt="Certificate" >
+            <img th:src="@{/Images/Certificates.png}" alt="Certificate">
         </div>
-
         <div id="res5">
             <p style="color:#1F2937;"><b>Clearance/Certificate</b></p>
             <p style="color:#4B5563;">Make a Certificate</p>
         </div>
     </a>
-
-
-
 </div>
 
 <div id="Footer"></div>
 
 <script th:src="@{Js/homepage.js}"></script>
 </body>
-
 </html>
