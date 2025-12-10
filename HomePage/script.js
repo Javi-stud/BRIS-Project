@@ -15,12 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
     blockBackNavigation();
     window.addEventListener("popstate", blockBackNavigation);
 
+    renderSitioChart();
     loadResidentCount();
     loadBlotterCount();
 });
+
 Menubar.addEventListener("click", () => {
   MenuDropdown.style.display = MenuDropdown.style.display === "none" ? "block" : "none";
 });
+
 logoutbutton.addEventListener("click", () => {
   logoutconfirm.style.display = "flex";
 });
@@ -98,3 +101,71 @@ document.addEventListener("keydown", function (e) {
     });
 
 })();
+
+
+
+
+const currentResidents = document.getElementById("currentResidents");
+const res2 = document.getElementById("res2");
+const sitioChartContainer = document.getElementById("sitioChartContainer");
+
+let chartRendered = false;
+
+// Hover to show chart with fade-in
+currentResidents.addEventListener("mouseenter", () => {
+    res2.style.display = "none";                 // Hide text
+    sitioChartContainer.style.display = "block"; // Show chart
+    setTimeout(() => {
+        sitioChartContainer.style.opacity = 1;    // Fade in
+    }, 50);
+
+    if (!chartRendered) {
+        renderSitioChart();
+        chartRendered = true;
+    }
+});
+
+// Hover out to hide chart with fade-out
+currentResidents.addEventListener("mouseleave", () => {
+    sitioChartContainer.style.opacity = 0;       // Fade out
+    setTimeout(() => {
+        sitioChartContainer.style.display = "none";
+        res2.style.display = "flex";             // Show text
+    }, 50); // Matches CSS transition duration
+});
+
+// Chart rendering function
+function renderSitioChart() {
+    const ctx = document.getElementById("sitioChart");
+    const sitioElements = document.querySelectorAll("#sitioData .sitio");
+    const sitioNames = [];
+    const sitioCounts = [];
+
+    sitioElements.forEach(el => {
+        sitioNames.push(el.getAttribute("data-name"));
+        sitioCounts.push(parseInt(el.getAttribute("data-count")));
+    });
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: sitioNames,
+            datasets: [{
+                label: "Residents",
+                data: sitioCounts,
+                backgroundColor: ["#3B82F6", "#10B981", "#F59E0B"],
+                borderRadius: 6
+            }]
+        },
+        options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { beginAtZero: true },
+                y: { ticks: { color: "#000" } }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+}
